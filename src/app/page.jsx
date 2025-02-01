@@ -6,7 +6,7 @@ export default function Home() {
   const [getMessage, setGetMessage] = useState('');
   const [multiplyNumber, setMultiplyNumber] = useState('');
   const [multiplyResult, setMultiplyResult] = useState('');
-  const [postMessage, setPostMessage] = useState('');
+  const [postMessage, setPostMessage] = useState('白馬');
   const [postResult, setPostResult] = useState('');
 
   // FastAPIのエンドポイント設定
@@ -91,12 +91,19 @@ export default function Home() {
         <section>
           <h2 className="text-xl font-bold mb-4">POSTリクエストを送信</h2>
           <div className="flex gap-2">
-            <input
-              type="text"
-              value={postMessage}
+            <select
+              name="selectedFruit"
+              defaultValue="orange"
+              className="border rounded px-5 py-1"
               onChange={(e) => setPostMessage(e.target.value)}
-              className="border rounded px-2 py-1"
-            />
+            >
+              <option value="白馬">白馬</option>
+              <option value="志賀高原">志賀高原</option>
+              <option value="野沢温泉">野沢温泉</option>
+              <option value="斑尾・妙高">斑尾・妙高</option>
+              <option value="菅平">菅平</option>
+              <option value="木曽">木曽</option>
+            </select>
             <button
               onClick={handlePostRequest}
               className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded"
