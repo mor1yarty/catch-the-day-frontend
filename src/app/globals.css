@@ -7,10 +7,18 @@
   --foreground: #171717;
 }
 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
+  }
+} */
+
+/*ダークモード用にカラーを固定*/
+@media (prefers-color-scheme: dark) {
+  input[type="number"],
+  input[type="text"] {
+    color: #000 !important;
   }
 }
 
