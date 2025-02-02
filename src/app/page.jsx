@@ -13,7 +13,7 @@ export default function Home() {
       setGetMessage('');
     } else {
       try {
-        const response = await fetch('http://localhost:8000/api/hello');
+        const response = await fetch(process.env.NEXT_PUBLIC_API_ENDPOINT + '/api/hello');
         const data = await response.json();
         setGetMessage(data);
       } catch (error) {
@@ -24,7 +24,7 @@ export default function Home() {
 
   const handlePostRequest = async () => {
     try {
-      const response = await fetch('http://localhost:8000/api/echo', {
+      const response = await fetch(process.env.NEXT_PUBLIC_API_ENDPOINT + '/api/echo', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
