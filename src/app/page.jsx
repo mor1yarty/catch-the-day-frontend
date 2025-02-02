@@ -44,7 +44,7 @@ export default function Home() {
         body: JSON.stringify({ message: postMessage }),
       });
       const data = await response.json();
-      setPostResult(data.message);
+      setPostResult(data);
     } catch (error) {
       console.error('Error:', error);
     }
@@ -97,7 +97,24 @@ export default function Home() {
             </button>
           </div>
           {postResult && (
-            <p className="mt-2">FastAPIからのPOST応答: {postResult}</p>
+            <>
+            <br />
+            <h4 className="text-xl font-bold mb-4">積雪情報</h4>
+            <p className="mt-2">現在の積雪量: {postResult.snow_amount.total}</p>
+            <p className="mt-2">直近3日間の降雪量: {postResult.snow_amount.recent}</p>
+            <br />
+            <h4 className="text-xl font-bold mb-4">明日の天気</h4>
+            <p className="mt-2">{postResult.weather_forcast.weather}</p>
+            <p className="mt-2">降水確率: {postResult.weather_forcast.rain_probability}</p>
+            <p className="mt-2 font-bold mb-4">周辺都市の最高・最低気温</p>
+            <p className="mt-2">
+              {Object.entries(postResult.weather_forcast.temparture).map(([key, value], index) => (
+                <span key={index}>
+                  {key}: {value.max_temp} / {value.min_temp}<br />
+                </span>
+              ))}
+            </p>
+            </>
           )}
         </section>
       </div>
