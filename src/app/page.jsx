@@ -4,8 +4,6 @@ import { useState } from 'react';
 export default function Home() {
   // useStateを使った値（状態）管理
   const [getMessage, setGetMessage] = useState('');
-  const [multiplyNumber, setMultiplyNumber] = useState('');
-  const [multiplyResult, setMultiplyResult] = useState('');
   const [postMessage, setPostMessage] = useState('白馬');
   const [postResult, setPostResult] = useState('');
 
@@ -22,16 +20,6 @@ export default function Home() {
         console.error('Error:', error);
       }
   }
-  };
-
-  const handleMultiplyRequest = async () => {
-    try {
-      const response = await fetch(`http://localhost:8000/api/multiply/${multiplyNumber}`);
-      const data = await response.json();
-      setMultiplyResult(data.doubled_value.toString());
-    } catch (error) {
-      console.error('Error:', error);
-    }
   };
 
   const handlePostRequest = async () => {
