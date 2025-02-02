@@ -49,16 +49,16 @@ export default function Home() {
   // ユーザーインターフェースの構築
   return (
     <div className="p-8">
-      <h1 className="text-2xl font-bold mb-6">Next.jsとFastAPIの連携アプリ</h1>
+      <h1 className="text-2xl font-bold mb-6">Catch THE DAY.</h1>
       <div className="space-y-8">
         {/* GETリクエスト */}
         <section>
-          <h2 className="text-xl font-bold mb-4">GETリクエストを送信</h2>
+          <h2 className="text-xl font-bold mb-4">最高のゲレンデに会いに行くためのアプリ</h2>
           <button
             onClick={handleGetRequest}
             className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded"
           >
-            GETリクエストを送信
+            THE DAY. とは何か？
           </button>
           {getMessage && (
             <p className="mt-2">サーバーからのGET応答: {getMessage}</p>
@@ -89,7 +89,7 @@ export default function Home() {
 
         {/* POSTリクエスト */}
         <section>
-          <h2 className="text-xl font-bold mb-4">POSTリクエストを送信</h2>
+          <h2 className="text-xl font-bold mb-4">現在の積雪量と明日の天気予報を確認する</h2>
           <div className="flex gap-2">
             <select
               name="selectedFruit"
