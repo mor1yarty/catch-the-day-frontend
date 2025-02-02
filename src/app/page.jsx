@@ -11,13 +11,17 @@ export default function Home() {
 
   // FastAPIのエンドポイント設定
   const handleGetRequest = async () => {
-    try {
-      const response = await fetch('http://localhost:8000/api/hello');
-      const data = await response.json();
-      setGetMessage(data.message);
-    } catch (error) {
-      console.error('Error:', error);
-    }
+    if (getMessage) {
+      setGetMessage('');
+    } else {
+      try {
+        const response = await fetch('http://localhost:8000/api/hello');
+        const data = await response.json();
+        setGetMessage(data);
+      } catch (error) {
+        console.error('Error:', error);
+      }
+  }
   };
 
   const handleMultiplyRequest = async () => {
@@ -61,29 +65,10 @@ export default function Home() {
             THE DAY. とは何か？
           </button>
           {getMessage && (
-            <p className="mt-2">サーバーからのGET応答: {getMessage}</p>
-          )}
-        </section>
-
-        {/* ID指定のGET */}
-        <section>
-          <h2 className="text-xl font-bold mb-4">IDを指定してGETリクエストを送信</h2>
-          <div className="flex gap-2">
-            <input
-              type="number"
-              value={multiplyNumber}
-              onChange={(e) => setMultiplyNumber(e.target.value)}
-              className="border rounded px-2 py-1"
-            />
-            <button
-              onClick={handleMultiplyRequest}
-              className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded"
-            >
-              送信
-            </button>
-          </div>
-          {multiplyResult && (
-            <p className="mt-2">FastAPIからの応答: {multiplyResult}</p>
+            <>
+            <img src={`data:image/jpeg;base64,${getMessage.image}`} alt="Sample" width={300} />
+            <p className="mt-2" style={{whiteSpace: 'pre-line'}}>{getMessage.message}</p>
+            </>
           )}
         </section>
 
