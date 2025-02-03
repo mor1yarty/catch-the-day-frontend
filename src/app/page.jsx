@@ -87,22 +87,38 @@ export default function Home() {
           </div>
           {postResult && (
             <>
-            <br />
-            <h4 className="text-xl font-bold mb-4">積雪情報</h4>
-            <p className="mt-2">現在の積雪量: {postResult.snow_amount.total}</p>
-            <p className="mt-2">直近3日間の降雪量: {postResult.snow_amount.recent}</p>
-            <br />
-            <h4 className="text-xl font-bold mb-4">明日の天気</h4>
-            <p className="mt-2">{postResult.weather_forcast.weather}</p>
-            <p className="mt-2">降水確率: {postResult.weather_forcast.rain_probability}</p>
-            <p className="mt-2 font-bold mb-4">周辺都市の最高・最低気温</p>
-            <p className="mt-2">
-              {Object.entries(postResult.weather_forcast.temparture).map(([key, value], index) => (
-                <span key={index}>
-                  {key}: {value.max_temp} / {value.min_temp}<br />
-                </span>
-              ))}
-            </p>
+              <br />
+              <h4 className="text-xl font-bold mb-4">現在の積雪情報</h4>
+              <p className="mt-2">積雪量: {postResult.snow_amount.total}</p>
+              <p className="mt-2">直近3日間の降雪量: {postResult.snow_amount.recent}</p>
+              <br />
+              <h4 className="text-xl font-bold mb-4">明日の天気予報</h4>
+              <table className="min-w-full border-collapse">
+                <thead>
+                  <tr>
+                    <th className="border px-4 py-2">時刻</th>
+                    <th className="border px-4 py-2">天気</th>
+                    <th className="border px-4 py-2">気温</th>
+                    <th className="border px-4 py-2">降雪量[mm]</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {Object.entries(postResult.weather_forcast).map(([time, forecast], index) => (
+                    <tr key={index}>
+                      <td className="border px-4 py-2">{time}</td>
+                      <td className="border px-4 py-2">
+                        <img
+                          src={`http://openweathermap.org/img/wn/${forecast.icon}@2x.png`}
+                          alt={forecast.weather}
+                          className="w-8 h-8"
+                        />
+                      </td>
+                      <td className="border px-4 py-2">{forecast.temp}</td>
+                      <td className="border px-4 py-2">{forecast.snow}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             </>
           )}
         </section>
