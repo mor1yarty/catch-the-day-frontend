@@ -19,7 +19,7 @@ export default function Home() {
       } catch (error) {
         console.error('Error:', error);
       }
-  }
+    }
   };
 
   const handlePostRequest = async () => {
@@ -45,17 +45,18 @@ export default function Home() {
       <div className="space-y-8">
         {/* GETリクエスト */}
         <section>
-          <h2 className="text-xl font-bold mb-4">最高のゲレンデに会いに行くためのアプリ</h2>
+          <p className="mt-2">最高のゲレンデに会いに行くためのアプリ</p>
+          <br />
           <button
             onClick={handleGetRequest}
             className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded"
           >
-            THE DAY. とは何か？
+            THE DAY とは
           </button>
           {getMessage && (
             <>
-            <img src={`data:image/jpeg;base64,${getMessage.image}`} alt="Sample" width={300} />
-            <p className="mt-2" style={{whiteSpace: 'pre-line'}}>{getMessage.message}</p>
+              <img src={`data:image/jpeg;base64,${getMessage.image}`} alt="Sample" width={300} />
+              <p className="mt-2" style={{ whiteSpace: 'pre-line' }}>{getMessage.message}</p>
             </>
           )}
         </section>
@@ -65,8 +66,8 @@ export default function Home() {
           <h2 className="text-xl font-bold mb-4">現在の積雪量と明日の天気予報を確認する</h2>
           <div className="flex gap-2">
             <select
-              name="selectedFruit"
-              defaultValue="orange"
+              name="selectedLocation"
+              defaultValue="白馬"
               className="border rounded px-5 py-1"
               onChange={(e) => setPostMessage(e.target.value)}
             >
