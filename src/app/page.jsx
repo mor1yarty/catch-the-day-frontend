@@ -55,7 +55,7 @@ export default function Home() {
           </button>
           {getMessage && (
             <>
-              <img src={`data:image/jpeg;base64,${getMessage.image}`} alt="Sample" width={300} />
+              <img src={process.env.NEXT_PUBLIC_API_ENDPOINT + '/static/the_day.jpg'} alt="Sample" width={300} />
               <p className="mt-2" style={{ whiteSpace: 'pre-line' }}>{getMessage.message}</p>
             </>
           )}
@@ -63,7 +63,7 @@ export default function Home() {
 
         {/* POSTリクエスト */}
         <section>
-          <h2 className="text-xl font-bold mb-4">現在の積雪量と明日の天気予報を確認する</h2>
+          <h2 className="text-xl font-bold mb-4">明日のコンディションを確認する</h2>
           <div className="flex gap-2">
             <select
               name="selectedLocation"
