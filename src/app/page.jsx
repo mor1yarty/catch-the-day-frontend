@@ -39,6 +39,18 @@ export default function Home() {
     }
   };
 
+  // Spotifyのプレイリストを開くための関数
+  const handleOpenSpotify = () => {
+    // ここにSpotifyプレイリストのURLを入力してください
+    window.open('https://open.spotify.com/playlist/4NjajWg5JjMUV2Vk9RwghM', '_blank');
+  };
+
+  // Apple Musicのプレイリストを開くための関数
+  const handleOpenAppleMusic = () => {
+    // ここにApple MusicプレイリストのURLを入力してください
+    window.open('https://music.apple.com/jp/playlist/%E3%82%B2%E3%83%AC%E3%83%B3%E3%83%87%E3%81%A7%E8%81%9E%E3%81%8D%E3%81%9F%E3%81%84%E5%86%AC%E3%82%BD%E3%83%B3%E3%82%B0%E3%83%97%E3%83%AC%E3%82%A4%E3%83%AA%E3%82%B9%E3%83%88/pl.b9cd3fcb98874817813ca84ac20d4f0b', '_blank');
+  };
+
   // ユーザーインターフェースの構築
   return (
     <div className="p-8">
@@ -83,7 +95,7 @@ export default function Home() {
             <select
               name="selectedDate"
               value={selectedDate}
-              className="border rounded px-5 py-1"
+              className="border rounded px-2 py-1"
               onChange={(e) => setSelectedDate(e.target.value)}
             >
               <option value="今日">今日</option>
@@ -136,6 +148,25 @@ export default function Home() {
               </table>
             </>
           )}
+        </section>
+
+        {/* 音楽プレイリストボタン（Spotify & Apple Music 横並び） */}
+        <section>
+          <h2 className="text-xl font-bold mb-4">ゲレンデまでの道のりを楽しむ</h2>
+          <div className="flex gap-4">
+            <button
+              onClick={handleOpenSpotify}
+              className="bg-green-500 hover:bg-green-600 text-white px-10 py-2 rounded"
+            >
+              Spotify
+            </button>
+            <button
+              onClick={handleOpenAppleMusic}
+              className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded"
+            >
+              Apple Music
+            </button>
+          </div>
         </section>
       </div>
     </div>
