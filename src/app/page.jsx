@@ -4,7 +4,8 @@ import { useState } from 'react';
 export default function Home() {
   // useStateを使った値（状態）管理
   const [getMessage, setGetMessage] = useState('');
-  const [postMessage, setPostMessage] = useState('白馬');
+  const [selectedArea, setSelectedArea] = useState("白馬");
+  const [selectedDate, setSelectedDate] = useState("今日");
   const [postResult, setPostResult] = useState('');
 
   // FastAPIのエンドポイント設定
@@ -29,7 +30,7 @@ export default function Home() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ message: postMessage }),
+        body: JSON.stringify({ area: selectedArea, date: selectedDate }),
       });
       const data = await response.json();
       setPostResult(data);
@@ -63,13 +64,13 @@ export default function Home() {
 
         {/* POSTリクエスト */}
         <section>
-          <h2 className="text-xl font-bold mb-4">明日のコンディションを確認する</h2>
+          <h2 className="text-xl font-bold mb-4">コンディションを確認する</h2>
           <div className="flex gap-2">
             <select
               name="selectedLocation"
-              defaultValue="白馬"
+              value={selectedArea}
               className="border rounded px-5 py-1"
-              onChange={(e) => setPostMessage(e.target.value)}
+              onChange={(e) => setSelectedArea(e.target.value)}
             >
               <option value="白馬">白馬</option>
               <option value="志賀高原">志賀高原</option>
@@ -77,6 +78,20 @@ export default function Home() {
               <option value="斑尾・妙高">斑尾・妙高</option>
               <option value="菅平">菅平</option>
               <option value="木曽">木曽</option>
+            </select>
+            {/* 日付選択 */}
+            <select
+              name="selectedDate"
+              value={selectedDate}
+              className="border rounded px-5 py-1"
+              onChange={(e) => setSelectedDate(e.target.value)}
+            >
+              <option value="今日">今日</option>
+              <option value="明日">明日</option>
+              <option value="明後日">明後日</option>
+              <option value="3日後">3日後</option>
+              <option value="4日後">4日後</option>
+              <option value="5日後">5日後</option>
             </select>
             <button
               onClick={handlePostRequest}
@@ -99,7 +114,7 @@ export default function Home() {
                     <th className="border px-4 py-2">時刻</th>
                     <th className="border px-4 py-2">天気</th>
                     <th className="border px-4 py-2">気温</th>
-                    <th className="border px-4 py-2">降雪量[mm]</th>
+                    <th className="border px-4 py-2">降雪量</th>
                   </tr>
                 </thead>
                 <tbody>
