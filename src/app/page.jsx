@@ -103,11 +103,11 @@ export default function Home() {
           {postResult && (
             <>
               <br />
-              <h4 className="text-xl font-bold mb-4">現在の積雪情報</h4>
-              <p className="mt-2">積雪量: {postResult.snow_amount.total}</p>
+              <h4 className="text-xl font-bold mb-4">積雪情報</h4>
+              <p className="mt-2">現在までの積雪量: {postResult.snow_amount.total}</p>
               <p className="mt-2">直近3日間の降雪量: {postResult.snow_amount.recent}</p>
               <br />
-              <h4 className="text-xl font-bold mb-4">明日の天気予報</h4>
+              <h4 className="text-xl font-bold mb-4">天気予報</h4>
               <table className="min-w-full border-collapse">
                 <thead>
                   <tr>
